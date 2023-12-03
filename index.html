@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Merger</title>
+    <!-- Link to the compiled Tailwind CSS -->
+    <link rel="stylesheet" href="/dist/output.css">
+    <!-- Link to your custom stylesheet -->
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1 class="heading"><span id="typed-text"></span></h1>
+    <div class="container">
+        <form action="/merge" method="post" enctype="multipart/form-data">
+            <input type="file" name="pdfs" multiple accept=".pdf">
+            <input type="submit" id="mergebtn" value="Merge"></input>
+        </form>
+    </div>
+
+    <script>
+        // Use an event listener to ensure the DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get the text to be typed
+            var textToType = "Merge your PDFs";
+
+            // Get the element where the typing effect will be applied
+            var typedTextElement = document.getElementById("typed-text");
+
+            // Set an initial empty content to the element
+            typedTextElement.textContent = "";
+
+            // Function to simulate typing effect
+            function typeWriter(text, index) {
+                if (index < text.length) {
+                    // Add the next character to the typed text
+                    typedTextElement.textContent += text.charAt(index);
+
+                    // Call the function again after a short delay
+                    setTimeout(function() {
+                        typeWriter(text, index + 1);
+                    }, 100); // Adjust the typing speed (delay) as needed
+                }
+            }
+
+            // Start the typing effect
+            typeWriter(textToType, 0);
+        });
+    </script>
+</body>
+</html>
